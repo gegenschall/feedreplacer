@@ -1,18 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
+!!! xml
 rss(xmlns:dc="http://purl.org/dc/elements/1.1/", version="2.0")
     channel
-        atom:link(rel="hub", href="http://tumblr.superfeedr.com/", xmlns:atom="http://www.w3.org/2005/Atom")
+        atom:link(rel="hub", href="http://tumblr.superfeedr.com/", xmlns:atom="http://www.w3.org/2005/Atom")/
         description= meta.description
+        title= meta.title
         generator NodeJS 0.8.9
         link= meta.link
         language= meta.language
 
         each article in articles
-            title= article.title
-            description= article.description
-            link= article.link
-            guid= article.guid
-            pubDate= article.pubDate
-            dc:creator= article.author
-            each cat in article.categories
-                category= cat
+            item
+                title= article.title
+                description= article.description
+                link= article.link
+                guid= article.guid
+                //- boy, that's funky. :-/
+                pubDate= article['rss:pubdate']['#']
+                dc:creator= article.author
+                each cat in article.categories
+                    category= cat
