@@ -6,7 +6,8 @@
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , config = require('./config');
 
 var app = express();
 
@@ -27,7 +28,12 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/namhaft.xml', routes.rss);
+config.forEach(function(feed){
+  app.get('/' + feed.name + '.xml', function(req, res) {
+    routes.rss(req, res, feed);
+  });
+})
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

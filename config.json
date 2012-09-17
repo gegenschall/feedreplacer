@@ -1,0 +1,9 @@
+[   
+    {
+        "name": "namhaft",
+        "feedUrl": "http://www.namhaft.org/rss",
+        "replace": {
+            "language": "de-de"
+        }
+    }
+]
